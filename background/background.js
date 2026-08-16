@@ -26,7 +26,7 @@ function getDashboard(callback){
     });
 }
 
-// Getting Blocked Sites....
+// Getting Week Details....
 function getWeekDetails(callback){
     chrome.storage.local.get("weeklyHistory", (result) => {
         let weeklyHistory = result.weeklyHistory;
@@ -107,15 +107,11 @@ function checkWebsite(tabId, changeInfo, tab){
         return;
     }
 
-    let getURL;                                                      // Created URL object....
+    let getURL;                                                      // Created URL object.... 
     try{
-        if (!tab.url) {
-            return;
-        }
-
-        getURL = new URL(tab.url).hostname;                          // Getting URL and Hostname....
-        if (getURL.startsWith("www.")){                              // Converting Hostname into xyz.com....
-            getURL = getURL.slice(4);
+        getURL = new URL(tab.url).hostname;
+        if (getURL.startsWith("www.")){                              // Getting URL and Hostname....
+            getURL = getURL.slice(4);                                // Converting Hostname into xyz.com....
         }
     } catch (error){
         console.error("Error while checking website:", error);
@@ -126,7 +122,7 @@ function checkWebsite(tabId, changeInfo, tab){
         if (result.focusMode === false){
             return;
         }
-        getBlockedSites((recover) => {                                   // Reading Storage and Updating it....
+        getBlockedSites((recover) => {                               // Reading Storage and Updating it....
             if (recover.includes(getURL)){
                 chrome.storage.local.get("tempAllow", (result) => {
                     const temp = result.tempAllow;

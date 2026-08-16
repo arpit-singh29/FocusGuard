@@ -81,13 +81,10 @@ toggle.addEventListener("click", () => {
                 dashboard.totalFocusTime += timeSpent;
                 chrome.storage.local.set({
                     dashboard : dashboard,
+                    focusMode : false,
                 }, () => {
                     chrome.storage.local.remove("focusStartTime");
-                    chrome.storage.local.set({
-                        focusMode:false
-                    }, () => {
-                        updateBtn(false);
-                    });
+                    updateBtn(false);
                     chrome.alarms.clear("dailyStreak");                
                 });
             });

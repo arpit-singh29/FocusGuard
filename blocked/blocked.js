@@ -80,11 +80,9 @@ async function validWebsite(siteInput){
         
         if (data.Status === 0) {
             return true;
-        }else{
-            return false;
         }
+        return false;
     }catch{
-        console.log("Something went wrong or check your internet.");
         return false;
     }
 }

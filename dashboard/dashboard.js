@@ -34,7 +34,7 @@ function formatTime(milliSecond){
 
     const hours = Math.floor(tSeconds / 3600);
     const minutes = Math.floor((tSeconds % 3600) / 60);
-    const seconds = Math.floor(tSeconds / 60);
+    const seconds = Math.floor(tSeconds % 60);
 
     return `${hours}hr ${minutes}min ${seconds}sec`;
 }
